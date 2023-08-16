@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { StyledApp, StyledContainerCards } from "./AppStyles";
 import { Header } from "./components/Header";
 import { GlobalStyles } from "./GlobalStyles";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Card } from "./components/Card";
 import { User } from "./types";
 import { getUsers } from "./api";
+import Create from "./pages/Create";
 
 function App() {
   const [users, setUsers] = useState<User[]>();
@@ -25,18 +26,26 @@ function App() {
       <StyledApp>
         <GlobalStyles />
         <Header />
-        <StyledContainerCards>
-          {users?.map((user) => {
-            return (
-              <Card
-                key={user.id}
-                email={user.email}
-                name={user.name}
-                id={user.id}
-              />
-            );
-          })}
-        </StyledContainerCards>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <StyledContainerCards>
+                {users?.map((user) => {
+                  return (
+                    <Card
+                      key={user.id}
+                      email={user.email}
+                      name={user.name}
+                      id={user.id}
+                    />
+                  );
+                })}
+              </StyledContainerCards>
+            }
+          />
+          <Route path="/criar-usuario" element={<Create />} />
+        </Routes>
       </StyledApp>
     </BrowserRouter>
   );
