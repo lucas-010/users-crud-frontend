@@ -22,7 +22,12 @@ export const StyledName = styled.h3`
 `;
 
 export const StyledEmail = styled.p`
-  margin-top: 4px;
+  margin-top: 5px;
   font-size: 14pt;
+  color: #fff;
+`;
+
+export const StyledContainerIcons = styled.div`
+  margin-top: 5px;
   color: #fff;
 `;
