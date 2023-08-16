@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styles";
-import { User } from "./types";
+import { User } from "../../types";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
