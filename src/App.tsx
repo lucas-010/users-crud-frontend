@@ -1,12 +1,15 @@
 import React from "react";
-import "./App.css";
+import { StyledApp, StyledContainerCards } from "./AppStyles";
 import { Header } from "./components/Header";
+import { GlobalStyles } from "./GlobalStyles";
 
 function App() {
   return (
-    <div className="App">
+    <StyledApp>
+      <GlobalStyles />
       <Header />
-    </div>
+      <StyledContainerCards></StyledContainerCards>
+    </StyledApp>
   );
 }
 
