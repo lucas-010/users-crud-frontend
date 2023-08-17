@@ -7,6 +7,7 @@ import { Card } from "./components/Card";
 import { User } from "./types";
 import { getUsers } from "./api";
 import Create from "./pages/Create";
+import EditForm from "./pages/Edit";
 
 function App() {
   const [users, setUsers] = useState<User[]>();
@@ -22,6 +23,7 @@ function App() {
   useEffect(() => {
     fetchUsers();
   }, []);
+
   return (
     <BrowserRouter>
       <StyledApp>
@@ -32,23 +34,25 @@ function App() {
             path="/"
             element={
               <StyledContainerCards>
-                {users?.map((user) => {
-                  return (
-                    <Card
-                      key={user.id}
-                      email={user.email}
-                      name={user.name}
-                      id={user.id}
-                      fetchUsers={fetchUsers}
-                    />
-                  );
-                })}
+                {users?.map((user) => (
+                  <Card
+                    key={user.id}
+                    email={user.email}
+                    name={user.name}
+                    id={user.id}
+                    fetchUsers={fetchUsers}
+                  />
+                ))}
               </StyledContainerCards>
             }
           />
           <Route
             path="/criar-usuario"
             element={<Create fetchUsers={fetchUsers} />}
+          />
+          <Route
+            path="/editar-usuario/:id"
+            element={<EditForm fetchUsers={fetchUsers} />}
           />
         </Routes>
       </StyledApp>

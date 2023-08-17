@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./styles";
+import { Link } from "react-router-dom";
 import { User } from "../../types";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
@@ -30,7 +31,13 @@ export const Card = ({ name, email, id, fetchUsers }: CardProps) => {
           fontSize={40}
           style={{ marginRight: "20px", cursor: "pointer" }}
         />
-        <AiFillEdit fontSize={40} style={{ cursor: "pointer" }} />
+        <Link to={`/editar-usuario/${id}`}>
+          <AiFillEdit
+            color="#fff"
+            fontSize={40}
+            style={{ cursor: "pointer" }}
+          />
+        </Link>
       </S.StyledContainerIcons>
     </S.StyledCard>
   );
