@@ -39,6 +39,7 @@ function App() {
                       email={user.email}
                       name={user.name}
                       id={user.id}
+                      fetchUsers={fetchUsers}
                     />
                   );
                 })}
