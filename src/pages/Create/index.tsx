@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
 import { FormData } from "./types";
+import axios from "axios";
 
-const Create: React.FC = () => {
+interface CreateProps {
+  fetchUsers: () => Promise<void>;
+}
+
+const Create = ({ fetchUsers }: CreateProps) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -19,8 +26,21 @@ const Create: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
+    try {
+      await axios.post("http://localhost:8080/user", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
+      fetchUsers();
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
+    }
   };
 
   return (

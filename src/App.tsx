@@ -10,15 +10,16 @@ import Create from "./pages/Create";
 
 function App() {
   const [users, setUsers] = useState<User[]>();
+  const fetchUsers = async () => {
+    try {
+      const usersData = await getUsers();
+      setUsers(usersData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const usersData = await getUsers();
-        setUsers(usersData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchUsers();
   }, []);
   return (
@@ -44,7 +45,10 @@ function App() {
               </StyledContainerCards>
             }
           />
-          <Route path="/criar-usuario" element={<Create />} />
+          <Route
+            path="/criar-usuario"
+            element={<Create fetchUsers={fetchUsers} />}
+          />
         </Routes>
       </StyledApp>
     </BrowserRouter>
